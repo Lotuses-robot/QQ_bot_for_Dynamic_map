@@ -1,4 +1,3 @@
-#coding=utf-8
 #coding=gbk
 
 from flask import Flask,request
