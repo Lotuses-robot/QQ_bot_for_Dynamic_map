@@ -1,3 +1,4 @@
+#coding=gbk
 from os import path
 
 import nonebot
