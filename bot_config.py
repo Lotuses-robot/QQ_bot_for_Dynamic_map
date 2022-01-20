@@ -1,3 +1,4 @@
+#coding=gbk
 from nonebot.default_config import *
 
 from datetime import timedelta
