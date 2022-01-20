@@ -1,4 +1,3 @@
-from nonebot import get_bot
 import requests
 import urllib3
 import json
