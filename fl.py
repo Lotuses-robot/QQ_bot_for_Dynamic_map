@@ -1,3 +1,4 @@
+#coding=gbk
 from flask import Flask,request
 from queue import Queue
 from json import loads
