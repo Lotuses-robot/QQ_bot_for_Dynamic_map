@@ -31,7 +31,7 @@ def try_getj():
 
     return j
 
-@on_command('q')
+@on_command('q',only_to_me=False)
 async def _(session: CommandSession):
     sends=''
     args=session.current_arg_text.strip()
