@@ -1,4 +1,4 @@
-#coding=gbk
+#coding=utf-8
 from flask import Flask,request
 from queue import Queue
 from json import loads
