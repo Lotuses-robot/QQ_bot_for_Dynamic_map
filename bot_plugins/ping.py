@@ -1,4 +1,4 @@
-#coding=gbk
+#coding=utf-8
 from nonebot.command import CommandSession
 from nonebot.experimental.plugin import on_command
 import requests
