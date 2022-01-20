@@ -5,6 +5,7 @@ from nonebot.experimental.plugin import on_command
 import requests
 import time
 import json
+import os
 s=requests.session()
 headers={'user-agent':'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Mobile Safari/537.36 Edg/97.0.1072.62'}
 
@@ -55,3 +56,8 @@ async def _(session: CommandSession):
         sends='未找到查询用户！'
     
     await session.send(sends)
+
+
+@on_command('update', permission=lambda sender: sender.is_superuser)
+async def _(session: CommandSession)
+    os.system('start cmd /k cd ..&python AutoUpdate.py')
