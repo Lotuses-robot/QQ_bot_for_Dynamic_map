@@ -2,10 +2,8 @@
 
 #### api：
 
-1、#q
+##### 1、#q
 
-参数：
-
-l 或 [player]
+参数：l 或 [player]
 
 查询 [player] 状态。
