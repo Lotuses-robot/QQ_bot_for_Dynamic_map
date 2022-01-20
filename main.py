@@ -1,3 +1,4 @@
+#coding=gbk
 import requests
 import urllib3
 import json
