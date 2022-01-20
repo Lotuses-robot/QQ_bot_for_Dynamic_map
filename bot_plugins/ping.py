@@ -53,7 +53,7 @@ async def _(session: CommandSession):
                 sends+=makeup(x)
 
     if sends=='':
-        sends='未找到查询用户！'
+        sends='未找到查询用户...'
     
     await session.send(sends)
 
