@@ -20,7 +20,7 @@ def send_msg():
             continue
 
         try:
-            r=s.post('https://map.oiercraft.ga:20684/up/sendmessage',json={'name':'','message':txt},timeout=10000,verify=False)
+            r=s.post('https://map.oiercraft.ga:20684/up/sendmessage',json={'name':'','message':'【QQ群】'+txt},timeout=10000,verify=False)
             code=r.status_code
             print(code+'\n')
         except:

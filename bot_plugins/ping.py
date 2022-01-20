@@ -14,16 +14,30 @@ def makeup(x):
     sends+='armor: '+str(x['armor'])
     return sends
 
+def try_getj():
+    while True:
+        t=int(time.time()*1000)
+        # print(t)
+        j=s.get('https://map.oiercraft.ga:20684/up/world/world/'+str(t),verify=False).content
+        j=j.decode('unicode_escape')
+        
+        try:
+            j=json.loads(j)
+        except:
+            time.sleep(2)
+            continue
+        
+        break
+
+    return j
+
 @on_command('q')
 async def _(session: CommandSession):
     sends=''
     args=session.current_arg_text.strip()
     
-    t=int(time.time()*1000)
-    # print(t)
-    j=s.get('https://map.oiercraft.ga:20684/up/world/world/'+str(t),verify=False).content
-    j=j.decode('unicode_escape')
-    j=json.loads(j)
+    j=try_getj()
+    
     j=j['players']
     
     sends=''
