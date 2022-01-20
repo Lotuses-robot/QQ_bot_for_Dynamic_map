@@ -1,4 +1,4 @@
-#coding=gbk
+#coding=utf-8
 
 from nonebot.command import CommandSession
 from nonebot.experimental.plugin import on_command
@@ -59,5 +59,5 @@ async def _(session: CommandSession):
 
 
 @on_command('update', permission=lambda sender: sender.is_superuser)
-async def _(session: CommandSession)
+async def _(session: CommandSession):
     os.system('start cmd /k cd ..&python AutoUpdate.py')
