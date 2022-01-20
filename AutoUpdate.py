@@ -62,5 +62,5 @@ while True:
     if flag==True:
         start('AutoUpdate.bat')
 
-    time.sleep(1000)
+    time.sleep(60*60*10)
     
