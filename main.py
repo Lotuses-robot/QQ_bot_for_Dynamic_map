@@ -1,4 +1,6 @@
 #coding=utf-8
+#coding=gbk
+
 import requests
 import urllib3
 import json
