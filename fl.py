@@ -33,7 +33,7 @@ def send_msg():
 bot_server = Flask(__name__)
 
 @bot_server.route('/',methods=['POST'])
-
+#路径是你在酷Q配置文件里自定义的
 def server():
     data = request.get_data().decode('utf-8')
     data = loads(data)

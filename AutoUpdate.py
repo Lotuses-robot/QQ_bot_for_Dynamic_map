@@ -19,6 +19,7 @@ def check_update(txt):
     
     return True
 
+time.sleep(60)
 while True:
     flag=True
     #bot_plugins/ping.py
@@ -33,6 +34,11 @@ while True:
     flag=flag and check_update('main.py')
 
     if flag==False:
+        ver=s.get('https://ghproxy.com/https://raw.githubusercontent.com/Lotuses-robot/QQ_bot_for_Dynamic_map/main/Version').text
+        imf=s.get('https://ghproxy.com/https://raw.githubusercontent.com/Lotuses-robot/QQ_bot_for_Dynamic_map/main/'+ver).text
+        imf.replace('\r\n','\n')
+        print(imf)
+        s.get('http://127.0.0.1:5700/send_group_msg?group_id=865811340&message='+imf)
         start('AutoUpdate.bat')
 
     print('no new update.')
