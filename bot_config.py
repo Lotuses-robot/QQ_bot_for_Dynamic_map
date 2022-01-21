@@ -10,6 +10,6 @@ COMMAND_START = { '#' }
 SESSION_EXPIRE_TIMEOUT = timedelta(minutes=2)
 
 HOST = '127.0.0.1'
-PORT = 8765
+PORT = 6700
 
 DEBUG = False
