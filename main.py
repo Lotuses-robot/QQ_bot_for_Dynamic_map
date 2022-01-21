@@ -40,6 +40,8 @@ while True:
         continue
 
     l=j.find('"type": "chat"')
+    if l==-1:
+        print("can't find")
     while l!=-1:
         l2=j.find('"timestamp":',l)
         l2+=len('"timestamp": 1642663591149}')
@@ -52,6 +54,12 @@ while True:
             s.get('http://127.0.0.1:5700/send_group_msg?group_id=865811340&message=【服务器】'+lst['account']+': '+lst['message'])
             print(lst['timestamp'],lastt,'【服务器】'+lst['account']+': '+lst['message']+'\n')
             mxt=max(mxt,lst['timestamp'])
+        else:
+            if lst['source']!='web':
+                print(lst['timestamp'],lastt,'【服务器】'+lst['account']+': '+lst['message']+'\n')
+            else:
+                print('???')
+
         l=j.find('"type": "chat"',l+1)
     if mxt!=-1:
         lastt=mxt
