@@ -1,17 +1,22 @@
 import os
 import time
+from tkinter.messagebox import RETRY
 import requests
+import socket
 s=requests.session()
+socket.setdefaulttimeout(1000000)
+headers={'user-agent':'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Mobile Safari/537.36 Edg/97.0.1072.62'}
 
 def start(txt):
     os.system('start cmd /k '+txt)
 
 def check_update(txt):
-    new=s.get('https://ghproxy.com/https://raw.githubusercontent.com/Lotuses-robot/QQ_bot_for_Dynamic_map/main/'+txt).content
+    new=s.get('https://raw.githubusercontents.com/Lotuses-robot/QQ_bot_for_Dynamic_map/main/'+txt,headers=headers,timeout=100000).content
     new.replace(b'\r\n',b'\n')
-    print(type(new))
+    # print(new)
     with open(txt,'rb') as file:
         old=file.read()
+    # print(old)
     if old!=new:
         with open(txt,'wb') as file:
             file.write(new)
@@ -19,7 +24,7 @@ def check_update(txt):
     
     return True
 
-time.sleep(60)
+# time.sleep(60)
 while True:
     flag=True
     #bot_plugins/ping.py
@@ -34,9 +39,11 @@ while True:
     flag=flag and check_update('main.py')
 
     if flag==False:
-        ver=s.get('https://ghproxy.com/https://raw.githubusercontent.com/Lotuses-robot/QQ_bot_for_Dynamic_map/main/Version').text
-        imf=s.get('https://ghproxy.com/https://raw.githubusercontent.com/Lotuses-robot/QQ_bot_for_Dynamic_map/main/'+ver).text
-        imf.replace('\r\n','\n')
+        ver=s.get('https://raw.githubusercontents.com/Lotuses-robot/QQ_bot_for_Dynamic_map/main/Version',headers=headers,timeout=100000).text
+        ver=ver.replace('\n','')
+        imf=s.get('https://raw.githubusercontents.com/Lotuses-robot/QQ_bot_for_Dynamic_map/main/'+ver,headers=headers,timeout=100000).text
+        # print('step2:',imf)
+        imf=imf.replace('\r\n','\n')
         print(imf)
         s.get('http://127.0.0.1:5700/send_group_msg?group_id=865811340&message='+imf)
         start('AutoUpdate.bat')
