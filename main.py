@@ -49,7 +49,7 @@ while True:
             pass
 
         if lst['timestamp']>lastt and lst['source']!='web':
-            s.get('http://127.0.0.1:5700/send_group_msg?group_id=865811340&message=【】'+lst['account']+': '+lst['message'])
+            s.get('http://127.0.0.1:5700/send_group_msg?group_id=865811340&message=【服务器】'+lst['account']+': '+lst['message'])
             print(lst['timestamp'],lastt,'【服务器】'+lst['account']+': '+lst['message']+'\n')
             mxt=max(mxt,lst['timestamp'])
         l=j.find('"type": "chat"',l+1)
