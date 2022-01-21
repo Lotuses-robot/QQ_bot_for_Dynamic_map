@@ -74,8 +74,8 @@ while True:
             pass
 
         if lst['timestamp']>lasttj:
-            s.get('http://127.0.0.1:5700/send_group_msg?group_id=865811340&message='+lst['account']+' 加入了服务器。')
-            print(lst['timestamp'],lasttj,lst['account']+' 加入了服务器。'+'\n')
+            s.get('http://127.0.0.1:5700/send_group_msg?group_id=865811340&message='+lst['account']+' 加入了服务器')
+            print(lst['timestamp'],lasttj,lst['account']+' 加入了服务器'+'\n')
             mxtj=max(mxtj,lst['timestamp'])
 
         l=j.find('"type": "playerjoin"',l+1)
