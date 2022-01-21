@@ -13,7 +13,7 @@ lastt=0
 
 def try_getj():
     while True:
-        t=int(time.time()*1000)
+        t=int((time.time()-5)*1000)
         # print(t)
         j=s.get('https://map.oiercraft.ga:20684/up/world/world/'+str(t),verify=False).content
         j=j.decode('unicode_escape')
@@ -30,7 +30,7 @@ def try_getj():
 
 while True:
     mxt=-1
-    t=int(time.time()*1000)
+    t=int(time.time()*1000-2000)
     # print(t)
     j=s.get('https://map.oiercraft.ga:20684/up/world/world/'+str(t),verify=False).content
     try:
@@ -40,11 +40,7 @@ while True:
         continue
 
     l=j.find('"type": "chat"')
-    if l==-1:
-        print("can't find")
-        with open('bot_plugins/msg.log','a+') as file:
-            file.write(str(t)+'\n'+j)
-        
+    
     while l!=-1:
         l2=j.find('"timestamp":',l)
         l2+=len('"timestamp": 1642663591149}')
@@ -54,17 +50,12 @@ while True:
             pass
 
         if lst['timestamp']>lastt and lst['source']!='web':
-            # s.get('http://127.0.0.1:5700/send_group_msg?group_id=865811340&message=【服务器】'+lst['account']+': '+lst['message'])
+            s.get('http://127.0.0.1:5700/send_group_msg?group_id=865811340&message=【服务器】'+lst['account']+': '+lst['message'])
             print(lst['timestamp'],lastt,'【服务器】'+lst['account']+': '+lst['message']+'\n')
             mxt=max(mxt,lst['timestamp'])
-        else:
-            if lst['source']!='web':
-                print(lst['timestamp'],lastt,'【服务器】'+lst['account']+': '+lst['message']+'xx\n')
-            else:
-                print('???')
 
         l=j.find('"type": "chat"',l+1)
     if mxt!=-1:
         lastt=mxt
-    time.sleep(3)
+    #ttime.sleep(3)
     
