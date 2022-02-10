@@ -19,7 +19,7 @@ def encode_cq(txt):
 
 def try_getj():
     while True:
-        t=int((time.time()-5)*1000)
+        t=int((time.time()-10)*1000)
         # print(t)
         j=s.get('https://map.oiercraft.ga:20684/up/world/world/'+str(t),verify=False).content
         j=j.decode('unicode_escape')
@@ -81,7 +81,7 @@ while True:
 
         if lst['timestamp']>lasttj:
             s.get('http://127.0.0.1:5700/send_group_msg?group_id=865811340&message='+lst['account']+' 加入了服务器。')
-            print(lst['timestamp'],lasttj,lst['account']+' 加入了服务器。'+'\n')
+            print(lst['timestamp'],lasttj,lst['account']+' 加入了服务器'+'\n')
             mxtj=max(mxtj,lst['timestamp'])
 
         l=j.find('"type": "playerjoin"',l+1)
