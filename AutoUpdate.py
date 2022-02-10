@@ -21,7 +21,7 @@ with open('Version','r+') as file:
 while True:
 
     flag=True
-    nv=str(GetFile('Version'))
+    nv=GetFile('Version').decode('utf-8')
 
     if nv!=v:
         with open('Version','w+') as file:
@@ -43,7 +43,7 @@ while True:
 
         s.get('http://127.0.0.1:5700/send_group_msg?group_id=865811340&message='+imf)
 
-        start('AutoUpdate.py')
+        start('AutoUpdate.bat')
         exit()
 
     print('no new update.')
