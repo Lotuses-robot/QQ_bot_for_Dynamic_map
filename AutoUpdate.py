@@ -12,7 +12,7 @@ def start(txt):
     os.system('start cmd /k '+txt)
 
 def GetFile(txt):
-    return s.get(mirror+txt).content
+    return s.get(mirror+txt,headers=headers).content
 
 # time.sleep(60)
 with open('Version','r+') as file:
