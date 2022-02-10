@@ -47,5 +47,5 @@ while True:
         exit()
 
     print('no new update.')
-    time.sleep(60*60*5)
+    time.sleep(60)
     
