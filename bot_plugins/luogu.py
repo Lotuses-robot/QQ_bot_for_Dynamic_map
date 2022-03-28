@@ -131,7 +131,7 @@ def Query_User_gugu(id):
     return {name1:int(value1),name2:int(value2),name3:int(value3),name4:int(value4),name5:int(value5)}
 
 
-@on_command('q',only_to_me=False)
+@on_command('qlg',only_to_me=False)
 async def _(session: CommandSession):
     sends=''
     args=session.current_arg_text.strip().split(' ',1)
