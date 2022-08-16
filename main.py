@@ -21,7 +21,7 @@ def try_getj():
     while True:
         t=int((time.time()-10)*1000)
         # print(t)
-        j=s.get('https://map.oiercraft.ga:20684/up/world/world/'+str(t),verify=False).content
+        j=s.get('http://localhost:8123/up/world/world/'+str(t),verify=False).content
         j=j.decode('unicode_escape')
         
         try:
@@ -38,7 +38,7 @@ while True:
     mxt=mxtj=mxtq=-1
     t=int(time.time()*1000-2000)
     # print(t)
-    j=s.get('https://map.oiercraft.ga:20684/up/world/world/'+str(t),verify=False).content
+    j=s.get('http://localhost:8123/up/world/world/'+str(t),verify=False).content
     try:
         j=j.decode('unicode_escape')
     except:
@@ -59,10 +59,45 @@ while True:
 
         if lst['source']!='web' and lastt < lst['timestamp']:
             s.get('http://127.0.0.1:5700/send_group_msg?group_id=865811340&message='+lst['account']+': '+encode_cq(lst['message']))
-            print(lst['timestamp'],lastt,'【服务器】'+lst['account']+': '+lst['message']+'\n')
+            print(lst['timestamp'],lastt,lst['account']+': '+lst['message']+'\n')
             lastt=max(lastt,lst['timestamp'])
 
         l=j.find('"type": "chat"',l+1)
     
-    if mxt!=-1:
-        lastt=mxt
+    # fine join
+
+    l=j.find('"type": "playerjoin"')
+    
+    while l!=-1:
+        l2=j.find('"timestamp":',l)
+        l2+=len('"timestamp": 1642663591149}')
+        try:
+            lst=json.loads(j[l-1:l2])
+        except:
+            pass
+
+        if lst['timestamp']>lasttj:
+            s.get('http://127.0.0.1:5700/send_group_msg?group_id=865811340&message='+lst['account']+' 加入了服务器')
+            print(lst['timestamp'],lasttj,lst['account']+' 加入了服务器'+'\n')
+            lasttj=max(lasttj,lst['timestamp'])
+
+        l=j.find('"type": "playerjoin"',l+1)
+
+    #find quit
+
+    l=j.find('"type": "playerquit"')
+    
+    while l!=-1:
+        l2=j.find('"timestamp":',l)
+        l2+=len('"timestamp": 1642663591149}')
+        try:
+            lst=json.loads(j[l-1:l2])
+        except:
+            pass
+
+        if lst['timestamp']>lasttq:
+            s.get('http://127.0.0.1:5700/send_group_msg?group_id=865811340&message='+lst['account']+' 退出了服务器')
+            print(lst['timestamp'],lasttq,lst['account']+' 退出了服务器'+'\n')
+            lasttq=max(lasttq,lst['timestamp'])
+
+        l=j.find('"type": "playerquit"',l+1)
